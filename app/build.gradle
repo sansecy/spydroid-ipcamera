@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "net.majorkernelpanic.spydroid"
+        minSdkVersion 14
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
+    packagingOptions {
+        pickFirst 'META-INF/DEPENDENCIES'
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:19.+'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    compile files('libs/GoogleAdMobAdsSdk-6.1.0.jar')
+    compile files('libs/acra-4.4.0.jar')
+    compile files('libs/sc-light-jdk15on-1.47.0.2.jar')
+    compile files('libs/scpkix-jdk15on-1.47.0.2.jar')
+    compile files('libs/scprov-jdk15on-1.47.0.2.jar')
+}
